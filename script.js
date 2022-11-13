@@ -7,10 +7,8 @@ var scoreboard = {
 
 function getComputerChoice() {
 
-    // 1. obtain random choice from rock paper scissors
     let computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-    // 2. return random choice as output from function
         return computerChoice;
 };
 
@@ -27,23 +25,23 @@ function getPlayerChoice() {
 function playRound(player, computer) {
 
     let winner;
-    // 2. If player choice is same as computer choice, return 'draw'
+    // If player choice is same as computer choice, return 'draw'
     if (player == computer) {
         winner = "draw";
     }
-    // 3. If player choice is rock and computer chooses scissors, return 'you win'
+    // If player choice is rock and computer chooses scissors, return 'you win'
     else if (player == "rock" && computer == "scissors"){
         winner = "player";
     } 
-    // 4. If player choice is paper and computer choice is rock, return 'you win'
+    // If player choice is paper and computer choice is rock, return 'you win'
     else if (player == "paper" && computer == "rock"){
         winner = "player";
     }
-    // 5. If player choice is scissors and computer choice is rock, return 'you win'
+    // If player choice is scissors and computer choice is rock, return 'you win'
     else if (player == "scissors" && computer == "paper") {
         winner = "player";
     }
-    // 6. Return computer wins in all other scenarios
+    // Return computer wins in all other scenarios
     else {
         winner = "computer";
     };
@@ -61,13 +59,16 @@ scoreboard.draws = 0;
         let winner;
         // obtain user input
         var playerChoice = getPlayerChoice();
+
         // obtain computer input
         var computerChoice = getComputerChoice();
-        // call playround with both inputs
+
+        // call playRound function with both inputs
         console.log("The player choose " + playerChoice);
         console.log("The computer choose " + computerChoice);
         winner = playRound(playerChoice, computerChoice);
-        // update score
+
+        // update score & print round outcome
         if (winner === "player"){
             scoreboard.wins = scoreboard.wins + 1;
             console.log("You won this round!");
