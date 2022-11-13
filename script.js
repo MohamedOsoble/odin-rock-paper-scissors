@@ -11,23 +11,22 @@ function getComputerChoice() {
     let computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
     // 2. return random choice as output from function
-    return computerChoice;
+        return computerChoice;
 };
 
 function getPlayerChoice() {
-    var choice = "hello";
+    let choice = "hello";
 
     while (choices.includes(choice) == false) {
         console.log("Choice must be rock, paper or scissors");
-        var choice = prompt("Choose a hand to play").toLowerCase();
+        choice = prompt("Choose a hand to play").toLowerCase();
     }
     return choice
 
 };
 function playRound(player, computer) {
-    // 1. Compare player choice to computer choice
+
     let winner;
-    console.log(player, computer)
     // 2. If player choice is same as computer choice, return 'draw'
     if (player == computer) {
         winner = "draw";
@@ -37,7 +36,7 @@ function playRound(player, computer) {
         winner = "player";
     } 
     // 4. If player choice is paper and computer choice is rock, return 'you win'
-    else if (player == "paper" && computerC == "rock"){
+    else if (player == "paper" && computer == "rock"){
         winner = "player";
     }
     // 5. If player choice is scissors and computer choice is rock, return 'you win'
@@ -59,26 +58,28 @@ scoreboard.draws = 0;
 
     // set up for loop to play 5 rounds
     for (let i = 0; i < 5; i++) {
+        let winner;
         // obtain user input
         var playerChoice = getPlayerChoice();
         // obtain computer input
         var computerChoice = getComputerChoice();
         // call playround with both inputs
         console.log("The player choose " + playerChoice);
-        console.log("The computer choose " + computerChoice)
-        var winner = playRound(getPlayerChoice, getComputerChoice);
+        console.log("The computer choose " + computerChoice);
+        winner = playRound(playerChoice, computerChoice);
         // update score
-        console.log("the winner is the " + winner)
         if (winner === "player"){
-            scoreboard.wins = scoreboard.wins++
+            scoreboard.wins = scoreboard.wins + 1;
+            console.log("You won this round!");
         }
         else if(winner === "computer"){
-            scoreboard.losses = scoreboard.losses++
+            scoreboard.losses = scoreboard.losses + 1;
+            console.log("You lost this round!");
         }
         else{
-            scoreboard.draws = scoreboard.draws++
+            scoreboard.draws = scoreboard.draws + 1;
+            console.log("You drew this round!");
         };
     }
-    // once loop is complete, return rounds won, lost and drawn.
-    console.log(scoreboard);
+    return scoreboard;
 };
