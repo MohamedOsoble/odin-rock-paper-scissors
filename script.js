@@ -12,7 +12,7 @@ function getComputerChoice() {
         return computerChoice;
 };
 
-function getPlayerChoice() {
+/* function getPlayerChoice() {
     let choice = "hello";
 
     while (choices.includes(choice) == false) {
@@ -21,7 +21,8 @@ function getPlayerChoice() {
     }
     return choice
 
-};
+}; */
+
 function playRound(player, computer) {
 
     let winner;
@@ -48,17 +49,16 @@ function playRound(player, computer) {
     return winner;
 };
 
-function game() {
-// initialize scoreboard to 0
+function game(choice) {
+/* // initialize scoreboard to 0
 scoreboard.wins = 0;
 scoreboard.losses = 0;
-scoreboard.draws = 0;
+scoreboard.draws = 0; */
 
-    // set up for loop to play 5 rounds
-    for (let i = 0; i < 5; i++) {
+    // Initialize the winner
         let winner;
         // obtain user input
-        var playerChoice = getPlayerChoice();
+        var playerChoice = choice;
 
         // obtain computer input
         var computerChoice = getComputerChoice();
@@ -81,6 +81,14 @@ scoreboard.draws = 0;
             scoreboard.draws = scoreboard.draws + 1;
             console.log("You drew this round!");
         };
-    }
-    return scoreboard;
+    return console.log(scoreboard);
 };
+
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        game(button.id);
+    });
+});
