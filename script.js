@@ -81,14 +81,66 @@ scoreboard.draws = 0; */
             scoreboard.draws = scoreboard.draws + 1;
             console.log("You drew this round!");
         };
-    return console.log(scoreboard);
+    return scoreboard;
 };
 
+choices.forEach((choice) => {
+    
+})
 
+const div = document.createElement('div');
 const buttons = document.querySelectorAll('button');
+const scoreboardContainer = document.querySelector('#scoreboard');
+const playAgainBtn = document.createElement('button');
+
+playAgainBtn.textContent = "Play Again?";
+scoreboardContainer.appendChild(playAgainBtn);
+playAgainBtn.style.display = "none";
+
+playAgainBtn.addEventListener('click', () => {
+    scoreboard.wins = 0;
+    scoreboard.losses = 0;
+    scoreboard.draws = 0;
+    wins.textContent = "Player wins: " + scoreboard.wins;
+    losses.textContent = "Computer wins: " + scoreboard.losses;
+    draws.textContent = "Draws: " + scoreboard.draws;
+    buttons.forEach((button) => {
+        button.disabled = false;
+    });
+    playAgainBtn.style.display = "none";
+    div.style.display = "none";
+});
+
+let wins = document.getElementById('wins');
+let losses = document.getElementById('losses');
+let draws = document.getElementById('draws');
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         game(button.id);
+        wins.textContent = "Player wins: " + scoreboard.wins;
+        losses.textContent = "Computer wins: " + scoreboard.losses;
+        draws.textContent = "Draws: " + scoreboard.draws;
+        if(scoreboard.wins == 5){
+            div.textContent = "You Won!";
+            scoreboardContainer.appendChild(div);
+            buttons.forEach((button) => {
+                button.disabled = true;
+                playAgainBtn.style.display = "";
+            });
+
+
+
+        }
+        else if(scoreboard.losses == 5) {
+            div.textContent = "Computer Won!";
+            scoreboardContainer.appendChild(div);
+            buttons.forEach((button) => {
+                button.disabled = "true";
+                playAgainBtn.style.display = "";
+            });
+
+
+        };
     });
 });
